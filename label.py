@@ -11,7 +11,7 @@ def get_sentiment(text: list) -> list:
     """
     Utilizing both system prompt and prompt as strings for customer reviews
     """
-    system_prompt - """You are a helpful assistant that categorizes text reviews into sentiment categories. The categories are: positive, neutral, negative, and irrelevant."""
+    system_prompt = """You are a helpful assistant that categorizes text reviews into sentiment categories. The categories are: positive, neutral, negative, and irrelevant."""
     prompt = f"""
     For each line of text in the string below, please categorize the review
     as either positive, neutral, negative, or irrelevant.
@@ -22,7 +22,7 @@ def get_sentiment(text: list) -> list:
     client = OpenAI()
     completion = client.chat.completions.create(
     model="gpt-4o-mini",
-    messages-[
+    messages=[
         {"role":"developer", "content": system_prompt},
         {"role":"developer", "content": prompt + "\n".join(text) + "\n"}
     ]
