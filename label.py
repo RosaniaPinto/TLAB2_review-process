@@ -1,6 +1,4 @@
 from openai import OpenAI
-
-
 def get_sentiment(text: list) -> list:
 
     if not text:
@@ -21,11 +19,12 @@ def get_sentiment(text: list) -> list:
     #{text}
     client = OpenAI()
     completion = client.chat.completions.create(
-    model="gpt-4o-mini",
-    messages=[
-        {"role":"developer", "content": system_prompt},
-        {"role":"developer", "content": prompt + "\n".join(text) + "\n"}
-    ]
-)
+        model="gpt-4o-mini",
+        messages=[
+            {"role":"developer", "content": system_prompt},
+            {"role":"user", "content": prompt + "\n".join(text) + "\n"}
+        ]
+
+    )
    
     return completion.choices[0].message.content.split()
