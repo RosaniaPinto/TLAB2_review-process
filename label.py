@@ -22,10 +22,10 @@ def get_sentiment(text: list) -> list:
     client = OpenAI()
     completion = client.chat.completions.create(
     model="gpt-4o-mini",
-    messages=[
-        {"role":"developer", "content": system_prompt}
-        {"role":"developer", "content": prompy + "\n".join(text) + "\n"}
-
+    messages-[
+        {"role":"developer", "content": system_prompt},
+        {"role":"developer", "content": prompt + "\n".join(text) + "\n"}
+    ]
+)
    
-
-    print(completion.choices[0].message.content.split()
+    return completion.choices[0].message.content.split()
