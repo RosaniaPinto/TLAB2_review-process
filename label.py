@@ -2,28 +2,30 @@ from openai import OpenAI
 
 
 def get_sentiment(text: list) -> list:
+
+    if not text:
+        return "Wrong input. text must be an array of strings."
+    if text and not all(isinstance(i,str) for i in text):
+        return "Wrong input. text must be an array of strongs."
+    
+    """
+    Utilizing both system prompt and prompt as strings for customer reviews
+    """
+    system_prompt - """You are a helpful assistant that categorizes text reviews into sentiment categories. The categories are: positive, neutral, negative, and irrelevant."""
+    prompt = f"""
+    For each line of text in the string below, please categorize the review
+    as either positive, neutral, negative, or irrelevant.
+    """
+   
+    # Use only a one-word response per line. Do not include any numbers.
+    #{text}
     client = OpenAI()
     completion = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=[
-        {"role":"developer", "content": "You are a children's short-story writer"},
-        {"role":"developer", "content": "Write a one-sentence bedtime story about a unicorn"}
-    ]
-    )
+        {"role":"developer", "content": system_prompt}
+        {"role":"developer", "content": prompy + "\n".join(text) + "\n"}
 
-    """
-    INSERT DOCSTRING HERE
-    """
-    system_prompt = """
-    As a artist manager, if I wanted to be a musician but I have zeo fans, what are steps to get to stardom?
-    ...
-    """  
+   
 
-    prompt = f"""
-    For each line of text in the string below, please categorize the review
-    as either positive, neutral, negative, or irrelevant.
-
-    Use only a one-word response per line. Do not include any numbers.
-    {text}
-    """
-    print(completions,choices[0].message.content)
+    print(completion.choices[0].message.content.split()
