@@ -11,7 +11,8 @@ def run(filepath: list):
 
     reviews = data
 
-    sentiments = [get_sentiment(list")] for list in revioews
+    sentiments = [get_sentiment(data["results"])
+    print(sentiments)
                                 
     make_plot(sentiments)
 
