@@ -4,29 +4,18 @@ from visualize import make_plot
 import json
 
 
-def run(filepath: str):
-    def run(filepath: str):
+def run(filepath: list):
+    with open(filepath, "r") as f:
+        data = json.load(f)
+    print(data["results"])
 
-   
-# visualize.py
+    reviews = data
 
-    """
-    INSERT DOCSTRING HERE
-    """
-    # open the json object
-    ...
+    sentiments = [get_sentiment(list")] for list in revioews
+                                
+    make_plot(sentiments)
 
-    # extract the reviews from the json file
-    ...
-
-    # get a list of sentiments for each line using get_sentiment
-    ...
-
-    # plot a visualization expressing sentiment ratio
-    ...
-
-    # return sentiments
-    ...
+    return sentiments
 
 
 if __name__ == "__main__":
