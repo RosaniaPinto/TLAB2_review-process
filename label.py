@@ -1,4 +1,6 @@
 from openai import OpenAI
+import os
+print(os.getenv("OPENAI_API_KEY"))
 def get_sentiment(text: list) -> list:
 
     if not text:
@@ -17,7 +19,7 @@ def get_sentiment(text: list) -> list:
    
     # Use only a one-word response per line. Do not include any numbers.
     #{text}
-    client = OpenAI()
+    client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
     completion = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
@@ -28,3 +30,16 @@ def get_sentiment(text: list) -> list:
     )
    
     return completion.choices[0].message.content.split()
+
+
+
+in_data = [
+        "this ring smells weird, don't recomend",
+        "I love this ring, I use it all the time when working out.",
+        "I will never buy another brand again, I love this ring",
+        "It's an ok ring. Some features could be better but for the price its fine.",
+        "its a ring",
+        "Bought this ring and it came broken. rip-off."
+    ]
+
+print(get_sentiment(in_data))
